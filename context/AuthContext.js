@@ -20,13 +20,16 @@ export const AuthProvider = ({ children }) => {
   const login = async (userData, navigation) => {
     setUser(userData);
     await AsyncStorage.setItem('user', JSON.stringify(userData));
-    navigation.navigate('Itinerary'); // Redirect to Itinerary after login
+    navigation.navigate({
+      index: 0,
+      routes: [{ name: 'MainTabs' }], // This should match the name of the tab navigator in AppNavigator
+    });
   };
 
   const logout = async (navigation) => {
     setUser(null);
     await AsyncStorage.removeItem('user');
-    navigation.navigate('Login'); // Redirect to Login after logout
+    navigation.replace('Login'); // Redirect to Login after logout
   };
 
   return (

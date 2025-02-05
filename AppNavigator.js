@@ -6,6 +6,7 @@ import ExcursionsScreen from './screens/ExcursionsScreen';
 import MessagingScreen from './screens/MessagingScreen';
 import MapsScreen from './screens/MapsScreen';
 import LoginScreen from './screens/LoginScreen';
+import WithSettings from './components/WithSettings';
 import { createStackNavigator } from '@react-navigation/stack';
 import { useAuth } from './context/AuthContext';
 
@@ -14,12 +15,14 @@ const Stack = createStackNavigator();
 
 function MainTabs() {
   return (
-    <Tab.Navigator initialRouteName="Itinerary">
-      <Tab.Screen name="Itinerary" component={ItineraryScreen} />
-      <Tab.Screen name="Excursions" component={ExcursionsScreen} />
-      <Tab.Screen name="Messaging" component={MessagingScreen} />
-      <Tab.Screen name="Maps" component={MapsScreen} />
-    </Tab.Navigator>
+    <WithSettings>
+      <Tab.Navigator initialRouteName="Itinerary">
+        <Tab.Screen name="Itinerary" component={ItineraryScreen} />
+        <Tab.Screen name="Excursions" component={ExcursionsScreen} />
+        <Tab.Screen name="Messaging" component={MessagingScreen} />
+        <Tab.Screen name="Maps" component={MapsScreen} />
+      </Tab.Navigator>
+    </WithSettings>
   );
 }
 
