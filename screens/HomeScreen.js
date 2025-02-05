@@ -10,13 +10,15 @@ import {
   Image,
 } from 'react-native';
 import Carousel from 'react-native-reanimated-carousel';
+import { useAuth } from '../context/AuthContext';
+
 
 export default function HomePage({ navigation }) {
-  const [showLogin, setShowLogin] = useState(false); // State to toggle login form
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // State for login status
-  const [name, setName] = useState(''); // State for user name
-  const fadeAnim = useRef(new Animated.Value(1)).current; // Animation reference
-  const slideAnim = useRef(new Animated.Value(0)).current; // Slide animation reference
+  const { user, login, logout } = useAuth();
+  const [showLogin, setShowLogin] = useState(false);
+  const [name, setName] = useState('');
+  const fadeAnim = useRef(new Animated.Value(1)).current;
+  const slideAnim = useRef(new Animated.Value(0)).current;
 
   const images = [
     require('../assets/images/sydney.jpg'),
@@ -28,7 +30,6 @@ export default function HomePage({ navigation }) {
   const width = Dimensions.get('window').width;
   const height = Dimensions.get('window').height;
 
-  // Handle login button click
   const handleLoginButton = () => {
     Animated.timing(fadeAnim, {
       toValue: 0,
@@ -44,40 +45,12 @@ export default function HomePage({ navigation }) {
     });
   };
 
-  // Handle login submission
   const handleLoginSubmit = () => {
     if (name.trim()) {
-        Animated.timing(fadeAnim, {
-            toValue: 0,
-            duration: 300,
-            useNativeDriver: true,
-          }).start(() => {
-          setIsLoggedIn(true);
-            Animated.timing(fadeAnim, {
-              toValue: 1,
-              duration: 300,
-              useNativeDriver: true,
-            }).start();
-          });
+      login({ name });
+      setShowLogin(false);
     }
   };
-
-  const handleLogout = () => {
-    Animated.timing(fadeAnim, {
-        toValue: 0,
-        duration: 300,
-        useNativeDriver: true,
-      }).start(() => {
-       setIsLoggedIn(false);
-       setName("");
-       setShowLogin(false);
-        Animated.timing(fadeAnim, {
-          toValue: 1,
-          duration: 300,
-          useNativeDriver: true,
-        }).start();
-      });
-  }
 
   return (
     <View style={styles.container}>
@@ -92,35 +65,14 @@ export default function HomePage({ navigation }) {
           <Image source={item} style={styles.image} />
         )}
       />
-      <Animated.View
-        style={[
-          styles.overlay,
-          {
-            opacity: fadeAnim,
-            transform: [
-              {
-                translateY: slideAnim.interpolate({
-                  inputRange: [0, 1],
-                  outputRange: [0, -Dimensions.get('window').height / 2],
-                }),
-              },
-            ],
-          },
-        ]}
-      >
-        {isLoggedIn ? (
+      <Animated.View style={[styles.overlay, { opacity: fadeAnim }]}> 
+        {user ? (
           <>
-            <Text style={styles.title}>Welcome Back, {name}!</Text>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => navigation.navigate('Schedule')}
-            >
-              <Text style={styles.buttonText}>Schedule Appointment</Text>
+            <Text style={styles.title}>Welcome Back, {user.name}!</Text>
+            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Itinerary')}>
+              <Text style={styles.buttonText}>Go to Itinerary</Text>
             </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => handleLogout()}
-            >
+            <TouchableOpacity style={styles.button} onPress={logout}>
               <Text style={styles.buttonText}>Logout</Text>
             </TouchableOpacity>
           </>
