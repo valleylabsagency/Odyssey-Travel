@@ -11,7 +11,7 @@ const WithSettings = ({ children }) => {
         {/* Settings Icon - Hidden when menu is open */}
         {!menuVisible && (
           <TouchableOpacity onPress={toggleMenu} style={{ position: 'absolute', top: 40, right: 20, zIndex: 10 }}>
-            <Text style={{ fontSize: 24 }}>{'⚙️'}</Text>
+            <Text style={{ fontSize: 28 }}>{'⚙️'}</Text>
           </TouchableOpacity>
         )}
         {children}
