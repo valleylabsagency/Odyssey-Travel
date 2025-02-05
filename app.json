@@ -3,8 +3,8 @@
     "name": "OdysseyTravel",
     "slug": "OdysseyTravel",
     "version": "1.0.0",
+    "icon": "./assets/images/logo-drawing.png",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
@@ -13,16 +13,23 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.tylerjvalley.OdysseyTravel"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.tylerjvalley.OdysseyTravel"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "fa089b87-2a8f-4c21-87e8-dc0f7b06a16a"
+      }
     }
   }
 }
