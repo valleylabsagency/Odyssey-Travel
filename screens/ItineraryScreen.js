@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, Dimensions } from 'react-native';
+import colors from '../assets/styles';
 
 const { width, height } = Dimensions.get('window');
 
@@ -68,19 +69,19 @@ const styles = {
     flex: 1,
     justifyContent: 'space-evenly',
     alignItems: 'center',
-    backgroundColor: '#e0f7fa',
+    backgroundColor: colors.background,
     paddingVertical: 20,
   },
   sectionTitle: {
     fontSize: 22,
     fontWeight: 'bold',
-    color: '#00796b',
+    color: colors.primary,
     marginBottom: 10,
   },
   section: {
     width: width * 0.9,
     height: height * 0.15,
-    backgroundColor: 'white',
+    backgroundColor: colors.primary,
     borderRadius: 10,
     padding: 20,
     justifyContent: 'center',
@@ -90,22 +91,22 @@ const styles = {
     shadowRadius: 5,
     elevation: 3,
     borderWidth: 2,
-    borderColor: '#00796b',
+    borderColor: colors.accent,
   },
   suggestionSection: {
     width: width * 0.9,
-    height: height * 0.24,
-    backgroundColor: 'white',
+    height: height * 0.15,
+    backgroundColor: colors.primary,
     borderRadius: 10,
     padding: 20,
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     alignItems: 'center',
     shadowColor: '#000',
     shadowOpacity: 0.1,
     shadowRadius: 5,
     elevation: 3,
     borderWidth: 2,
-    borderColor: '#00796b',
+    borderColor: colors.accent,
   },
   arrowContainer: {
     flexDirection: 'row',
@@ -116,39 +117,40 @@ const styles = {
   arrow: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: '#00796b',
+    color: colors.accent,
   },
   leftText: {
     position: 'absolute',
     left: 20,
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#004d40',
+    color: colors.accent,
   },
   rightText: {
     position: 'absolute',
     right: 20,
     fontSize: 18,
-    color: 'gray',
+    color: colors.accent,
   },
   centerText: {
     fontSize: 18,
-    maxWidth: 250,
     fontWeight: 'bold',
     textAlign: 'center',
-    color: '#004d40',
+    color: colors.accent,
   },
   seeMoreButton: {
-    marginTop: 20,
+    marginTop: 10,
     padding: 10,
-    backgroundColor: '#00796b',
+    backgroundColor: colors.background,
     borderRadius: 5,
-    width: '40%',
+    width: '60%',
     alignItems: 'center',
+    borderWidth: 2,
+    borderColor: colors.accent,
   },
   seeMoreText: {
     fontSize: 16,
-    color: 'white',
+    color: colors.accent,
     fontWeight: 'bold',
   }
 };

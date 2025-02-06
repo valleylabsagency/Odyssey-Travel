@@ -9,6 +9,8 @@ import LoginScreen from './screens/LoginScreen';
 import WithSettings from './components/WithSettings';
 import { createStackNavigator } from '@react-navigation/stack';
 import { useAuth } from './context/AuthContext';
+import Icon from 'react-native-vector-icons/MaterialIcons'; 
+
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -16,7 +18,26 @@ const Stack = createStackNavigator();
 function MainTabs() {
   return (
     <WithSettings>
-      <Tab.Navigator initialRouteName="Itinerary">
+      <Tab.Navigator
+       initialRouteName="Itinerary"
+       screenOptions={({ route }) => ({
+        tabBarIcon: ({ color, size }) => {
+          let iconName;
+
+          if (route.name === 'Itinerary') {
+            iconName = 'flight'; // Icon for Itinerary
+          } else if (route.name === 'Excursions') {
+            iconName = 'scuba-diving'; // Icon for Excursions
+          } else if (route.name === 'Messaging') {
+            iconName = 'chat'; // Icon for Messaging
+          } else if (route.name === 'Maps') {
+            iconName = 'map'; // Icon for Maps
+          }
+
+          return <Icon name={iconName} size={size} color={color} />;
+        },
+      })}
+       >
         <Tab.Screen name="Itinerary" component={ItineraryScreen} />
         <Tab.Screen name="Excursions" component={ExcursionsScreen} />
         <Tab.Screen name="Messaging" component={MessagingScreen} />

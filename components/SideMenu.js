@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useContext } from 'react';
 import { View, Text, TouchableOpacity, Animated, Dimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useAuth } from '../context/AuthContext';
+import colors from '../assets/styles';
 
 const { width, height } = Dimensions.get('window');
 
@@ -23,7 +24,7 @@ const SideMenu = ({ isVisible, onClose }) => {
         toValue: width,
         duration: 300,
         useNativeDriver: true,
-      }).start(() => onClose()); // Ensure onClose is called after animation completes
+      }).start(() => onClose());
     };
   
     return (
@@ -48,20 +49,23 @@ const styles = {
     top: 0,
     width: width * 0.4,
     height: height,
-    backgroundColor: 'white',
+    backgroundColor: colors.background,
     shadowColor: '#000',
     shadowOpacity: 0.2,
     shadowRadius: 4,
     elevation: 5,
+    borderWidth: 2,
+    borderColor: colors.primary
   },
   closeButton: {
     position: 'absolute',
     top: 26,
-    right: width * 0.42 - 60, // Adjusting so the arrow is inside the menu and parallel to the settings icon
+    right: width * 0.42 - 60,
     padding: 16,
   },
   arrow: {
     fontSize: 24,
+    color: colors.accent,
   },
   logoutButton: {
     padding: 16,
@@ -69,7 +73,7 @@ const styles = {
   },
   logoutText: {
     fontSize: 18,
-    color: 'red',
+    color: colors.accent,
   }
 };
 
